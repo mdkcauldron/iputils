@@ -42,8 +42,6 @@ BuildRequires:	libidn-devel
 BuildRequires:	libsysfs-devel
 BuildRequires:	perl-SGMLSpm
 BuildRequires:	openssl-devel
-Conflicts:	xinetd < 2.1.8.9pre14-2mdk
-Conflicts:	apparmor-profiles < 2.1-1.961.5mdv2008.0
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
