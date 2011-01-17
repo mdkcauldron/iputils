@@ -4,7 +4,7 @@
 Summary:	Network monitoring tools including ping
 Name:		iputils
 Version:	%{version}
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD
 Group:		System/Base
 URL:		http://linux-net.osdl.org/index.php/Iputils
@@ -16,9 +16,12 @@ Source2:	bonding.txt
 Source3:	ifenslave.8
 Source4:	bin.ping.apparmor
 Patch0:		iputils-s20070202-s_addr.patch
+
 Patch2:		iputils-s20070202-ping_sparcfix.patch
 Patch3:		iputils-s20070202-rdisc-server.patch
+# change the verbosity of a error message 
 Patch4:		iputils-20020124-countermeasures.patch
+# add a cache to ping address resolution, should be sent upstream
 Patch6:		iputils-20020927-addrcache.patch
 Patch7:		iputils-20020927-ping-subint.patch
 Patch9:		iputils-ifenslave.patch
