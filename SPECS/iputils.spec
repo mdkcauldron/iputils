@@ -4,7 +4,7 @@
 Summary:	Network monitoring tools including ping
 Name:		iputils
 Version:	%{version}
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	BSD
 Group:		System/Base
 URL:		http://linux-net.osdl.org/index.php/Iputils
@@ -33,7 +33,6 @@ Patch14:	iputils-20071127-output.patch
 Patch15:	iputils-s20100418-ia64_align.patch
 Patch16:	iputils-20071127-warnings.patch
 Patch17:	iputils-s20071127-format_not_a_string_literal_and_no_format_arguments.diff
-Patch18:	iputils-s20100418-fix_in6_pktinfo.patch
 Patch19:	iputils-s20100418-icmp_return_messages.patch
 Patch20:	iputils-s20100418-fix_ping_stats_for_dead_hosts.patch
 Patch21:	iputils-s20100418-addoptlags.patch
@@ -71,7 +70,6 @@ cp %{SOURCE3} .
 #%patch14 -p1 -b .output
 %patch15 -p1 -b .ia64_align
 %patch17 -p1 -b .format_not_a_string_literal_and_no_format_arguments
-%patch18 -p1 -b .in6_pktinfo
 %patch19 -p1 -b .icmp_return_messages
 %patch20 -p1 -b .dead-hosts
 %patch21 -p1 -b .optflags
