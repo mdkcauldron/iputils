@@ -4,7 +4,7 @@
 Summary:	Network monitoring tools including ping
 Name:		iputils
 Version:	%{version}
-Release:	%mkrel 3
+Release:	%mkrel 4
 License:	BSD
 Group:		System/Base
 URL:		http://linux-net.osdl.org/index.php/Iputils
@@ -36,6 +36,7 @@ Patch17:	iputils-s20071127-format_not_a_string_literal_and_no_format_arguments.d
 Patch19:	iputils-s20100418-icmp_return_messages.patch
 Patch20:	iputils-s20100418-fix_ping_stats_for_dead_hosts.patch
 Patch21:	iputils-s20100418-addoptlags.patch
+Requires(pre):	filesystem >= 2.1.9-18
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	libidn-devel
 BuildRequires:	libsysfs-devel
@@ -87,17 +88,15 @@ rm -rf %{buildroot}
 
 install -d %{buildroot}%{_sbindir}
 install -d %{buildroot}%{_bindir}
-install -d %{buildroot}/{bin,sbin}
 install -d %{buildroot}%{_mandir}/man8
 
 install -c clockdiff		%{buildroot}%{_sbindir}/
 
-install -c arping %{buildroot}/sbin/
-ln -s ../../sbin/arping %{buildroot}%{_sbindir}/arping
+install -c arping %{buildroot}%{_sbindir}/
 
-install -c ping %{buildroot}/bin/
-install -c ifenslave %{buildroot}/sbin/
-install -c ping6 %{buildroot}%{_bindir}
+install -c ping %{buildroot}%{_bindir}/
+install -c ifenslave %{buildroot}%{_sbindir}/
+install -c ping6 %{buildroot}%{_bindir}/
 install -c rdisc %{buildroot}%{_sbindir}/
 install -c tracepath %{buildroot}%{_sbindir}/
 install -c tracepath6 %{buildroot}%{_sbindir}/
@@ -128,10 +127,9 @@ rm -rf %{buildroot}
 %doc RELNOTES bonding.txt
 %config(noreplace) %{_sysconfdir}/apparmor.d/bin.ping
 %{_sbindir}/clockdiff
-%attr(4755,root,root)	/bin/ping
-/sbin/arping
+%attr(4755,root,root)	%{_bindir}/ping
 %{_sbindir}/arping
-/sbin/ifenslave
+%{_sbindir}/ifenslave
 #%ifnarch ppc
 %attr(4755,root,root) %{_bindir}/ping6
 %{_sbindir}/tracepath6
