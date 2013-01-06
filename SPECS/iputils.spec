@@ -1,10 +1,10 @@
-%define version 20101006
+%define version 20121221
 %define distname %{name}-s%{version}
 
 Summary:	Network monitoring tools including ping
 Name:		iputils
 Version:	%{version}
-Release:	%mkrel 4
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Base
 URL:		http://linux-net.osdl.org/index.php/Iputils
@@ -42,7 +42,6 @@ BuildRequires:	libidn-devel
 BuildRequires:	libsysfs-devel
 BuildRequires:	perl-SGMLSpm
 BuildRequires:	openssl-devel
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The iputils package contains ping, a basic networking tool. The ping command
@@ -57,23 +56,23 @@ cp %{SOURCE1} .
 cp %{SOURCE2} .
 cp %{SOURCE3} .
 
-%patch0 -p0 -b .s_addr
-%patch2 -p1 -b .ping_sparcfix
-%patch3 -p1 -b .rdisc-server
-%patch4 -p1 -b .counter
-%patch6 -p1 -b .addrcache
-%patch7 -p1 -b .ping-subint
-%patch9 -p1 -b .addr
-%patch10 -p1 -b .infiniband
-%patch11 -p1 -b .idn
-%patch12 -p1 -b .traffic_class
+#%patch0 -p0 -b .s_addr
+#%patch2 -p1 -b .ping_sparcfix
+#%patch3 -p1 -b .rdisc-server
+#%patch4 -p1 -b .counter
+#%patch6 -p1 -b .addrcache
+#%patch7 -p1 -b .ping-subint
+#%patch9 -p1 -b .addr
+#%patch10 -p1 -b .infiniband
+#%patch11 -p1 -b .idn
+#%patch12 -p1 -b .traffic_class
 #%patch13 -p1 -b .arping_timeout
 #%patch14 -p1 -b .output
-%patch15 -p1 -b .ia64_align
-%patch17 -p1 -b .format_not_a_string_literal_and_no_format_arguments
-%patch19 -p1 -b .icmp_return_messages
-%patch20 -p1 -b .dead-hosts
-%patch21 -p1 -b .optflags
+#%patch15 -p1 -b .ia64_align
+#%patch17 -p1 -b .format_not_a_string_literal_and_no_format_arguments
+#%patch19 -p1 -b .icmp_return_messages
+#%patch20 -p1 -b .dead-hosts
+#%patch21 -p1 -b .optflags
 
 %build
 %serverbuild
@@ -123,7 +122,6 @@ fi
 rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %doc RELNOTES bonding.txt
 %config(noreplace) %{_sysconfdir}/apparmor.d/bin.ping
 %{_sbindir}/clockdiff
