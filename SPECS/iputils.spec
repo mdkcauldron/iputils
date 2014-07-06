@@ -1,9 +1,8 @@
-%define version 20121221
 %define distname %{name}-s%{version}
 
 Summary:	Network monitoring tools including ping
 Name:		iputils
-Version:	%{version}
+Version:	20121221
 Release:	%mkrel 3
 License:	BSD
 Group:		System/Base
@@ -85,8 +84,6 @@ perl -pi -e 's!\$\(MAKE\) -C doc html!!g' Makefile
 make man
 
 %install
-rm -rf %{buildroot}
-
 install -d %{buildroot}%{_sbindir}
 install -d %{buildroot}%{_bindir}
 install -d %{buildroot}%{_mandir}/man8
@@ -119,9 +116,6 @@ install -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/apparmor.d/bin.ping
 if [ -x /sbin/apparmor_parser ]; then
         /sbin/service apparmor condreload
 fi
-
-%clean
-rm -rf %{buildroot}
 
 %files
 %doc RELNOTES bonding.txt
