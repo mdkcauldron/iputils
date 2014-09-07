@@ -21,6 +21,7 @@ BuildRequires:	perl-SGMLSpm
 BuildRequires:	openssl-devel
 BuildRequires:	libcap-devel
 BuildRequires:	gnutls-devel
+BuildRequires:	libgcrypt-devel
 
 %description
 The iputils package contains ping, a basic networking tool. The ping command
