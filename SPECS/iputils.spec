@@ -1,7 +1,7 @@
 Summary:	Network monitoring tools including ping
 Name:		iputils
 Version:	20140620
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	BSD
 Group:		System/Base
 URL:		http://www.linux-ipv6.org/gitweb/gitweb.cgi?p=gitroot/iputils.git
