@@ -1,7 +1,7 @@
 Summary:	Network monitoring tools including ping
 Name:		iputils
 Version:	20140620
-Release:	%mkrel 5
+Release:	%mkrel 6
 License:	BSD
 Group:		System/Base
 URL:		http://www.linux-ipv6.org/gitweb/gitweb.cgi?p=gitroot/iputils.git
@@ -11,7 +11,6 @@ Source1:	ifenslave.c
 # bonding.txt seems to come from linux-2.6.25/Documentation/networking/bonding.txt
 Source2:	bonding.txt
 Source3:	ifenslave.8
-Source4:	bin.ping.apparmor
 Patch0:		iputils-ifenslave.patch
 Requires(pre):	filesystem >= 2.1.9-18
 BuildRequires:	docbook-dtd31-sgml
@@ -70,19 +69,8 @@ install -c ifenslave.8 %{buildroot}%{_mandir}/man8/
 rm -f %{buildroot}%{_mandir}/man8/rarpd.8*
 rm -f %{buildroot}%{_mandir}/man8/tftpd.8*
 
-# apparmor profile
-mkdir -p %{buildroot}%{_sysconfdir}/apparmor.d/
-install -m 0644 %{SOURCE4} %{buildroot}%{_sysconfdir}/apparmor.d/bin.ping
-
-%posttrans
-# if we have apparmor installed, reload if it's being used
-if [ -x /sbin/apparmor_parser ]; then
-        /sbin/service apparmor condreload
-fi
-
 %files
 %doc RELNOTES bonding.txt
-%config(noreplace) %{_sysconfdir}/apparmor.d/bin.ping
 %{_sbindir}/clockdiff
 %attr(4755,root,root)	%{_bindir}/ping
 %{_sbindir}/arping
