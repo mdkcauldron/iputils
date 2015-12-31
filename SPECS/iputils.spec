@@ -1,17 +1,17 @@
 Summary:	Network monitoring tools including ping
 Name:		iputils
-Version:	20140620
-Release:	%mkrel 6
+Version:	20151218
+Release:	%mkrel 1
 License:	BSD
 Group:		System/Base
 URL:		http://www.linux-ipv6.org/gitweb/gitweb.cgi?p=gitroot/iputils.git
-Source0:	http://www.skbuff.net/iputils/%{name}-%{version}.tar.xz
+Source0:	http://www.skbuff.net/iputils/%{name}-s%{version}.tar.bz2
 # ifenslave.c seems to come from linux-2.6.25/Documentation/networking/ifenslave.c
 Source1:	ifenslave.c
 # bonding.txt seems to come from linux-2.6.25/Documentation/networking/bonding.txt
 Source2:	bonding.txt
 Source3:	ifenslave.8
-Patch0:		iputils-ifenslave.patch
+Patch1:		iputils-ifenslave.patch
 Requires(pre):	filesystem >= 2.1.9-18
 BuildRequires:	docbook-dtd31-sgml
 BuildRequires:	libidn-devel
@@ -29,13 +29,13 @@ host and can tell you if that machine is alive and receiving network traffic.
 
 %prep
 
-%setup -q
+%setup -q -n %{name}-s%{version}
 
 cp %{SOURCE1} .
 cp %{SOURCE2} .
 cp %{SOURCE3} .
 
-%patch0 -p1 -b .addr
+%autopatch -p1
 
 %build
 %serverbuild
