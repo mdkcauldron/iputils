@@ -56,7 +56,6 @@ install -c arping %{buildroot}%{_sbindir}/
 
 install -c ping %{buildroot}%{_bindir}/
 install -c ifenslave %{buildroot}%{_sbindir}/
-install -c ping6 %{buildroot}%{_bindir}/
 install -c rdisc %{buildroot}%{_sbindir}/
 install -c tracepath %{buildroot}%{_sbindir}/
 install -c tracepath6 %{buildroot}%{_sbindir}/
@@ -65,9 +64,16 @@ install -c traceroute6 %{buildroot}%{_sbindir}/
 install -c doc/*.8 %{buildroot}%{_mandir}/man8/
 install -c ifenslave.8 %{buildroot}%{_mandir}/man8/
 
+ln -s ping %{buildroot}%{_bindir}/ping6
+
 # these manpages are provided by other packages
 rm -f %{buildroot}%{_mandir}/man8/rarpd.8*
 rm -f %{buildroot}%{_mandir}/man8/tftpd.8*
+
+%pretrans
+if [ -e %{_bindir}/ping6 -a ! -L %{bindir}/ping6 ]; then
+  rm -f %{_bindir}/ping6
+fi
 
 %files
 %doc RELNOTES bonding.txt
@@ -76,7 +82,7 @@ rm -f %{buildroot}%{_mandir}/man8/tftpd.8*
 %{_sbindir}/arping
 %{_sbindir}/ifenslave
 #%ifnarch ppc
-%attr(4755,root,root) %{_bindir}/ping6
+%{_bindir}/ping6
 %{_sbindir}/tracepath6
 #%endif
 %{_sbindir}/tracepath
