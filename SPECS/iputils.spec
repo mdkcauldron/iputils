@@ -1,11 +1,11 @@
 Summary:	Network monitoring tools including ping
 Name:		iputils
-Version:	20151218
+Version:	20160308
 Release:	%mkrel 1
 License:	BSD
 Group:		System/Base
 URL:		http://www.linux-ipv6.org/gitweb/gitweb.cgi?p=gitroot/iputils.git
-Source0:	http://www.skbuff.net/iputils/%{name}-s%{version}.tar.bz2
+Source0:	http://www.skbuff.net/iputils/%{name}-s%{version}.tar.gz
 # ifenslave.c seems to come from linux-2.6.25/Documentation/networking/ifenslave.c
 Source1:	ifenslave.c
 # bonding.txt seems to come from linux-2.6.25/Documentation/networking/bonding.txt
