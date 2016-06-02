@@ -1,7 +1,7 @@
 Summary:	Network monitoring tools including ping
 Name:		iputils
 Version:	20160308
-Release:	%mkrel 1
+Release:	%mkrel 2
 License:	BSD
 Group:		System/Base
 URL:		http://www.linux-ipv6.org/gitweb/gitweb.cgi?p=gitroot/iputils.git
@@ -70,10 +70,11 @@ ln -s ping %{buildroot}%{_bindir}/ping6
 rm -f %{buildroot}%{_mandir}/man8/rarpd.8*
 rm -f %{buildroot}%{_mandir}/man8/tftpd.8*
 
-%pretrans
-if [ -e %{_bindir}/ping6 -a ! -L %{bindir}/ping6 ]; then
-  rm -f %{_bindir}/ping6
-fi
+%pretrans -p <lua>
+st = posix.stat(rpm.expand("{_bindir}/ping6"))
+if st and st.type ~= "link" then
+   os.remove(rpm.expand("{_bindir}/ping6"))
+end
 
 %files
 %doc RELNOTES bonding.txt
